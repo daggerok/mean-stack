@@ -23,4 +23,4 @@ script:
 - cd $root/frontend
 - npm i
 - npm t
-- #npm run e2e
+- npm run e2e
