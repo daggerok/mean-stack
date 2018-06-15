@@ -1,0 +1,16 @@
+apt:
+  update: true
+  packages:
+  - nvm
+
+language: node_js
+node_js: lts/*
+
+install: true
+
+script:
+
+- export root=$(pwd)
+- cd $root/frontend
+- npm i
+- npm t

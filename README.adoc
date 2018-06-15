@@ -1,0 +1,6 @@
+= MEAN stack
+
+TODO: In progress...
+
+- Angular 6 (frontend)
+- Express + MongoDB (backend)
