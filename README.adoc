@@ -1,4 +1,4 @@
-= MEAN stack
+= MEAN stack image:https://travis-ci.org/daggerok/mean-stack.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/mean-stack"]
 
 TODO: In progress...
 
