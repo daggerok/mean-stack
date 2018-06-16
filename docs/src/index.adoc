@@ -70,7 +70,7 @@ docker build -f Dockerfile.frontend -t daggerok/mean-stack:frontend ./frontend
 .run application in docker
 [source,bash]
 ----
-docker run -d --rm -p 80:80 --name run-mean-stack-frontend daggerok/mean-stack:frontend
+docker run -d --rm -p 80:80 -e "PORT=80" --name run-mean-stack-frontend daggerok/mean-stack:frontend
 ----
 
 .check application is working on http://0.0.0.0/
