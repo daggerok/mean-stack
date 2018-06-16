@@ -57,8 +57,6 @@ include::../../frontend/src/app/app-routing.module.ts[tags=content]
 .build frontend application
 [source,bash]
 ----
-cd ./frontend
-
 npm i
 npm run dist
 ----
@@ -66,7 +64,7 @@ npm run dist
 .build docker image based on nginx
 [source,bash]
 ----
-docker build -t daggerok/mean-stack:frontend .
+docker build -f Dockerfile.frontend -t daggerok/mean-stack:frontend ./frontend
 ----
 
 .run application in docker
