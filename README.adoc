@@ -5,4 +5,6 @@ TODO: In progress...
 
 - Angular 6 (frontend)
 - TODO: Express + MongoDB (backend)
+
+link:https://daggerok.github.io/mean-stack[Read reference documentation]
 //end::content[]
