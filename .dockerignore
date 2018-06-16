@@ -1,5 +1,4 @@
 .idea
-frontend/.idea
 frontend/dist
 frontend/node_modules
 docs
