@@ -6,7 +6,7 @@
     "start": "ng serve --open",
     "build": "ng build",
     "test": "cross-env CI=true ng test",
-    "ttd": "ng test",
+    "tdd": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
