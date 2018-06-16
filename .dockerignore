@@ -1,0 +1,17 @@
+.idea
+frontend/.idea
+frontend/dist
+frontend/node_modules
+docs
+gradle
+public
+.editorconfig
+.gitignore
+.travis.yml
+build.gradle
+Dockerfile.frontend
+gradlew
+gradlew.bat
+heroku.yml
+README.adoc
+settings.gradle
