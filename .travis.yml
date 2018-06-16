@@ -35,11 +35,19 @@ script:
 - npm run dist
 #
 - cd $root
-- docker build --no-cache --force-rm --rm -f Dockerfile.frontend-build -t daggerok/mean-stack:frontend $root
+- cp -Rf ./.dockerignore.frontend ./.dockerignore
+- docker build --rm --force-rm --no-cache -f Dockerfile.frontend -t daggerok/mean-stack:frontend .
 - docker run -d --rm -p 80:80 -e "PORT=80" --name run-mean-stack-frontend daggerok/mean-stack:frontend
 - sleep 1
-- http http://127.0.0.1:80/
+- http http://127.0.0.1/
 - docker stop run-mean-stack-frontend
+#
+- cp -Rf ./.dockerignore.frontend-build ./.dockerignore
+- docker build --no-cache --force-rm --rm -f Dockerfile.frontend-build -t daggerok/mean-stack:frontend-build .
+- docker run -d --rm -p 80:80 -e "PORT=80" --name run-mean-stack-frontend-build daggerok/mean-stack:frontend-build
+- sleep 1
+- http http://127.0.0.1/
+- docker stop run-mean-stack-frontend-build
 
 env:
   global:

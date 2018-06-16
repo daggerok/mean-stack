@@ -64,6 +64,7 @@ npm run dist
 .build docker image based on nginx
 [source,bash]
 ----
+cp -Rf ./.dockerignore.frontend ./.dockerignore
 docker build -f Dockerfile.frontend -t daggerok/mean-stack:frontend ./frontend
 ----
 
@@ -138,9 +139,39 @@ https://daggerok-mean-stack-frontend.herokuapp.com/ | https://git.heroku.com/dag
 .push app
 [source,bash]
 ----
+cp -Rf ./heroku.yml.frontend-build ./heroku.yml
+cp -Rf ./.dockerignore.frontend-build ./.dockerignore
+
 git add .
 git commit -am "Deploy heroku app."
 git push heroku master
+----
+
+== docker can also build...
+
+NOTE: Here we will be using `Dockerfile.frontend-build` file instead.
+      This file also contains instructions for project build using npm.
+      We wanna simply delegate everything to `git push heroku master` instruction
+
+.prepare frontend Dockerfile (`Dockerfile.frontend-build` file):
+[source,bash]
+----
+include::../../Dockerfile.frontend-build[tags=content]
+----
+
+.and also prepare `docke/default.conf.tpl` file:
+[source,bash]
+----
+include::../../docker/default.conf.tpl[]
+----
+
+.build everything run and test...
+[source,bash]
+----
+docker build --rm --no-cache -f Dockerfile.frontend-build -t daggerok/mean-stack-frontend-build .
+docker run -d --rm --name run-mean-stack-frontend-build -p 80:80 daggerok/mean-stack-frontend-build
+open http://0.0.0.0/
+docker stop run-mean-stack-frontend-build
 ----
 
 == Links
