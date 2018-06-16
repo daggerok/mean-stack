@@ -33,7 +33,9 @@ cache:
   directories:
   - "$HOME/.m2"
   - "$HOME/.gradle"
-before_deploy: . $root/gradlew -b $root/build.gradle clean documentation
+before_deploy:
+- cd $root
+- ./gradlew documentation
 deploy:
   provider: pages
   skip-cleanup: true
