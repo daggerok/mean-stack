@@ -1,9 +1,13 @@
+service:
+- docker
 apt:
   update: true
   packages:
   - wget
   - libappindicator1
   - fonts-liberation
+  - docker-ce
+  - python-pip
 install: true
 before_script:
 - export CHROME_BIN=/usr/bin/google-chrome
@@ -11,6 +15,7 @@ before_script:
 - sh -e /etc/init.d/xvfb start
 - wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 - sudo dpkg -i google-chrome*.deb >/dev/null
+- sudo pip install httie
 
 language: node_js
 node_js: lts/*
@@ -19,10 +24,18 @@ script:
 - export root=$(pwd)
 - cd $root/frontend
 - npm i
+#
 - npm t
 - npm run e2e
+#
 - npm build
 - npm dist
+#
+- docker build -t daggerok/mean-stack:frontend .
+- docker run -d --rm -p 80:80 --name run-mean-stack-frontend daggerok/mean-stack:frontend
+- sleep 1
+- http :80/
+- docker stop run-mean-stack-frontend
 
 env:
   global:
