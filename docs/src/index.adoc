@@ -89,7 +89,7 @@ docker stop run-mean-stack-frontend
 
 === frontend
 
-==== heroku + nginx (in docker)
+==== prepare nginx in docker for heroku
 
 TIP: Idea is simple: as far nginx doesn;t support environment variables,
      but heroku is required ENV `$PORT` to be used,
@@ -109,11 +109,15 @@ include::../../Dockerfile.frontend[tags=content]
 include::../../docker/default.conf.tpl[]
 ----
 
+==== prepare heroku config
+
 .prepare `heroku.yml` file:
 [source,bash]
 ----
 include::../../heroku.yml[]
 ----
+
+==== create and deploy heroku app
 
 .create heroku application
 [source,bash]
@@ -131,8 +135,6 @@ https://daggerok-mean-stack-frontend.herokuapp.com/ | https://git.heroku.com/dag
 git add .
 git commit -am "Deploy heroku app."
 git push heroku master
-
-# output: TODO...
 ----
 
 == Links

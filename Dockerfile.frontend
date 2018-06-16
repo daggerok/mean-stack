@@ -1,7 +1,6 @@
 #docker build -t daggerok/mean-stack:frontend .
-#docker run -d --rm -p 80:80 --name run-mean-stack-frontend daggerok/mean-stack:frontend
+#docker run -d --rm -p 80:80 -e "PORT=80" --name run-mean-stack-frontend daggerok/mean-stack:frontend
 #open http://127.0.0.0/
-#docker stop run-mean-stack-frontend
 #docker stop run-mean-stack-frontend
 #tag::content[]
 FROM nginx:1.15.0-alpine
