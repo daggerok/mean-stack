@@ -130,7 +130,8 @@ include::../../heroku.yml[]
 heroku create daggerok-mean-stack-frontend --stack=container
 
 # output:
-Creating ⬢ daggerok-mean-stack-frontend... done
+
+Creating ⬢ daggerok-mean-stack-frontend... done, stack is container
 https://daggerok-mean-stack-frontend.herokuapp.com/ | https://git.heroku.com/daggerok-mean-stack-frontend.git
 ----
 
