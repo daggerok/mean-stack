@@ -89,6 +89,14 @@ docker stop run-mean-stack-frontend
 
 === frontend
 
+==== heroku + nginx (in docker)
+
+TIP: Idea is simple: as far nginx doesn;t support environment variables,
+     but heroku is required ENV `$PORT` to be used,
+     we can create nginx default.conf template
+     and during build or bootstrap generate and replace it in nginx.
+     see `Dockerfile.frontend` for derails
+
 .prepare frontend Dockerfile (`Dockerfile.frontend` file):
 [source,bash]
 ----
