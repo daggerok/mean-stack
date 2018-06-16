@@ -1,4 +1,7 @@
 /public/
+.gradle/
+/out/
+**/out/
 
 # compiled output
 dist/

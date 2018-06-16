@@ -28,7 +28,72 @@ include::../../README.adoc[tags=content]
 
 == Implementation
 
-TODO: implement documentation...
+=== frontend
+
+.add material design to project:
+[source,bash]
+----
+ng add @angular/material
+----
+
+.add application components
+
+.configure material design as separed module (`app-angular-material.module.ts` file):
+[source,typescript]
+----
+include::../../frontend/src/app/app-angular-material.module.ts[tags=content]
+----
+
+.configure application routes (`app-routing.module.ts` file):
+[source,typescript]
+----
+include::../../frontend/src/app/app-routing.module.ts[tags=content]
+----
+
+== Docker
+
+=== frontend
+
+.build frontend application
+[source,bash]
+----
+cd ./frontend
+
+npm i
+npm run dist
+----
+
+.build docker image based on nginx
+[source,bash]
+----
+docker build -t daggerok/mean-stack:frontend .
+----
+
+.run application in docker
+[source,bash]
+----
+docker run -d --rm -p 80:80 --name run-mean-stack-frontend daggerok/mean-stack:frontend
+----
+
+.check application is working on http://0.0.0.0/
+[source,bash]
+----
+open http://127.0.0.0/
+
+docker stop run-mean-stack-frontend
+----
+
+.finally stop docker container for cleanning up...
+[source,bash]
+----
+docker stop run-mean-stack-frontend
+----
+
+== Heroku deployment
+
+=== frontend
+
+TODO: implement me...
 
 == Links
 

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+// tag::content[]
 import { Routes, RouterModule } from '@angular/router';
 import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
@@ -16,3 +17,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+// end::content[]

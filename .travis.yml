@@ -21,6 +21,8 @@ script:
 - npm i
 - npm t
 - npm run e2e
+- npm build
+- npm dist
 
 env:
   global:
