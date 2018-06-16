@@ -22,6 +22,7 @@ node_js: lts/*
 
 script:
 - export root=$(pwd)
+# frontend
 - cd $root/frontend
 - npm i
 #
