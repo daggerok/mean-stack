@@ -98,13 +98,13 @@ include::../../Dockerfile.frontend[tags=content]
 .prepare nginx config template (`docke/default.conf.tpl` file):
 [source,bash]
 ----
-include::../../docker/default.conf.tpl
+include::../../docker/default.conf.tpl[]
 ----
 
 .prepare `heroku.yml` file:
 [source,bash]
 ----
-include::../../heroku.yml
+include::../../heroku.yml[]
 ----
 
 .create heroku application
