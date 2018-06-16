@@ -17,6 +17,7 @@ before_script:
 - sh -e /etc/init.d/xvfb start
 - wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 - sudo dpkg -i google-chrome*.deb >/dev/null
+- sudo pip install --upgrade pip
 - sudo pip install httpie
 
 language: node_js
