@@ -1,13 +1,15 @@
+env:
+  global:
+  - TERM=dumb
+  - secure: A1bgIsJ5pkg9twsJPpwTdrmLraBPuvENIaGrultqw+A8kSIXmaMphqPxeJXRkBdIT4m+8/gObs9KZPZsjWu0o0tgGJgNjB4Xoti7dLOxpgHX+uaYob/YXYcA5hRAYO5wXrerdxOQrUTc4ls79H3U6AW2lq2iuN9OliJbksMQHGSnOEjIqb5VmbhsP/2NW12xFIrvMf+pNOZ8V71OKxY71nuGO7GjJAixFKlgdspsRQI9ymzjquopK4oPYl6rvsDFi2BzDPmBL9fkYhkj1k0jOqObaqYyN14d3gRNPIEIh09YjCESYF558MMJQq+iUo0wh0ALuptb7gNkJJ5Z7U92LozgwFp5oFJEVNPDg5t9J1Loa5knPMxoA5gIyxriVlHKaV2lJTYiiDN/vUrr98CfmSznUxW56B8XCXOVl+yLqdT10gPSpk3ozhjfEtCCX03Yh5gRzJGhlF7yoMDJPgGBknYUqsFCiJiWBpy94JtMpk8uT3o2C+ELppD5kebrpxjh3EGObjmG/fZ9qmWaRaYiBx/V4E/Wq3dYypEfw+W2c7qXcSEN4uZ4oA5qRkkGXuDxUISCZ+c5s7JuVGLpHm+Y51g2ItbJor7VcLwDLGAN0IvztON7UnSNTQPY4HMTQdhydFM8BhrqTa1EQuYGVdD9E3IcykmdAcKvpM1U36Zfhqs=
 language: node_js
 node_js: lts/*
-
 apt:
   update: true
   packages:
   - wget
   - libappindicator1
   - fonts-liberation
-
 install: true
 before_script:
 - export CHROME_BIN=/usr/bin/google-chrome
@@ -15,11 +17,27 @@ before_script:
 - sh -e /etc/init.d/xvfb start
 - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 - sudo dpkg -i google-chrome*.deb
-
 script:
-
 - export root=$(pwd)
 - cd $root/frontend
 - npm i
 - npm t
 - npm run e2e
+before_cache:
+- sudo rm -rf $HOME/.gradle/caches/4.8/fileHashes/fileHashes.bin
+- sudo rm -rf $HOME/.gradle/caches/4.8/fileHashes/fileHashes.lock
+- sudo rm -rf $HOME/.gradle/caches/modules-2/modules-2.lock
+cache:
+  directories:
+  - "$HOME/.m2"
+  - "$HOME/.gradle"
+before_deploy: "./gradlew clean documentation"
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: "$GITHUB_TOKEN"
+  keep-history: true
+  on:
+    branch: master
+  local-dir: public
+  target_branch: gh-pages

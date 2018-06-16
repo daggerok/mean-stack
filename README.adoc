@@ -1,6 +1,8 @@
 = MEAN stack image:https://travis-ci.org/daggerok/mean-stack.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/mean-stack"]
 
+//tag::content[]
 TODO: In progress...
 
 - Angular 6 (frontend)
-- Express + MongoDB (backend)
+- TODO: Express + MongoDB (backend)
+//end::content[]

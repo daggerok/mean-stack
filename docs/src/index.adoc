@@ -1,0 +1,43 @@
+= {root-project-name} ({project-version})
+Maksim Kostromin <daggerok@gmail.com>
+{docdatetime}
+:doctype: book
+:toc: left
+:toclevels: 4
+:source-highlighter: prettify
+:numbered:
+:icons: font
+:hide-uri-scheme:
+:revnumber: {project-version}
+:example-caption!:
+
+Travis CI status:
+ifdef::backend-html5[image:https://travis-ci.org/daggerok/{root-project-name}.svg?branch=master["Build Status", link={github-url}]]
+
+////
+GitLab CI status:
+ifdef::backend-html5[image:https://gitlab.com/daggerok/{root-project-name}/badges/master/build.svg["Build Status", link={gitlab-url}]]
+
+BitBucket CI status:
+ifdef::backend-html5[image:https://img.shields.io/bitbucket/pipelines/daggerok/{root-project-name}.svg["Build Status", link={bitbucket-url}]]
+////
+
+== Introduction
+
+include::../../README.adoc[tags=content]
+
+== Implementation
+
+TODO: implement documentation...
+
+== Links
+
+ifdef::backend-html5[link:./index.pdf[Documentation in PFD format]]
+
+link:https://github.com/daggerok/{root-project-name}[GitHub]
+
+////
+link:https://gitlab.com/daggerok/findbugs-example[GitLab]
+
+link:https://bitbucket.com/daggerok/findbugs-example[BitBucket]
+////

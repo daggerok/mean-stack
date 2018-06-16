@@ -1,0 +1,31 @@
+buildscript {
+  ext {
+    asciidoctorjPdfVersion = '1.5.0-alpha.15'
+  }
+  dependencies {
+    classpath("org.asciidoctor:asciidoctorj-pdf:$asciidoctorjPdfVersion")
+  }
+}
+
+plugins {
+  id 'org.asciidoctor.convert' version '1.5.7' apply false
+}
+
+allprojects {
+  apply plugin: 'base'
+
+  project.version = '0.0.1'
+
+  defaultTasks 'clean', 'build'
+
+   clean {
+     [
+       'public',
+     ].each { delete it }
+   }
+}
+
+wrapper {
+  gradleVersion = '4.8'
+  distributionType = 'BIN'
+}
