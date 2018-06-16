@@ -77,8 +77,6 @@ docker run -d --rm -p 80:80 -e "PORT=80" --name run-mean-stack-frontend daggerok
 [source,bash]
 ----
 open http://127.0.0.0/
-
-docker stop run-mean-stack-frontend
 ----
 
 .finally stop docker container for cleanning up...
