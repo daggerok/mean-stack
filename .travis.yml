@@ -35,7 +35,7 @@ script:
 - npm run dist
 #
 - cd $root
-- docker build --no-cache --force-rm -f Dockerfile.frontend -t daggerok/mean-stack:frontend $root/frontend .
+- docker build --no-cache --force-rm --rm -f Dockerfile.frontend -t daggerok/mean-stack:frontend $root/frontend .
 - docker run -d --rm -p 80:80 -e "PORT=80" --name run-mean-stack-frontend daggerok/mean-stack:frontend
 - sleep 1
 - http http://127.0.0.1:80/
