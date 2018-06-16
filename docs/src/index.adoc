@@ -91,19 +91,24 @@ docker stop run-mean-stack-frontend
 
 ==== prepare nginx in docker for heroku
 
-TIP: Idea is simple: as far nginx doesn;t support environment variables,
+TIP: Idea is very simple:
+     as far nginx doesn't support environment variables,
      but heroku is required ENV `$PORT` to be used,
      we can create nginx default.conf template
      and during build or bootstrap generate and replace it in nginx.
      see `Dockerfile.frontend` for derails
 
-.prepare frontend Dockerfile (`Dockerfile.frontend` file):
+NOTE: We will be using `Dockerfile.frontend-build` file instead.
+      This file also contains instructions for project build using npm.
+      We wanna simply delegate everything to `git push heroku master` instruction
+
+.prepare frontend Dockerfile (`Dockerfile.frontend-build` file):
 [source,bash]
 ----
-include::../../Dockerfile.frontend[tags=content]
+include::../../Dockerfile.frontend-build[tags=content]
 ----
 
-.prepare nginx config template (`docke/default.conf.tpl` file):
+.prepare nginx config template (`docke/default.conf.tpl` file) to be used by Dockerfil during image build:
 [source,bash]
 ----
 include::../../docker/default.conf.tpl[]
