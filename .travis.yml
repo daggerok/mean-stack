@@ -31,8 +31,8 @@ script:
 - npm t
 - npm run e2e
 #
-- npm build
-- npm dist
+- npm run build
+- npm run dist
 #
 - cd $root
 - docker build -f Docker.frontend -t daggerok/mean-stack:frontend ./frontend
