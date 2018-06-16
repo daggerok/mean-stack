@@ -1,0 +1,27 @@
+#docker build -t daggerok/mean-stack:frontend .
+#docker run -d --rm -p 80:80 --name run-mean-stack-frontend daggerok/mean-stack:frontend
+#open http://127.0.0.0/
+#docker stop run-mean-stack-frontend
+#docker stop run-mean-stack-frontend
+#tag::content[]
+FROM nginx:1.15.0-alpine
+LABEL MAINTAINER="Maksim Kostromin https://github.com/daggerok"
+ARG PORT_ARG="80"
+ARG HOST_ARG="localhost"
+ENV PORT=${PORT_ARG}
+ENV HOST=${HOST_ARG}
+RUN apk add --update --no-cache libintl \
+ && apk add --no-cache --virtual build_deps gettext \
+ && cp /usr/bin/envsubst /usr/local/bin/envsubst \
+ && apk del build_deps \
+ && echo '#!/bin/sh' >> /usr/local/bin/entrypoint.sh \
+ && echo 'PORT=${PORT:=80}' >> /usr/local/bin/entrypoint.sh \
+ && echo 'HOST=${HOST:=localhost}' >> /usr/local/bin/entrypoint.sh \
+ && echo '#/bin/sh -c "envsubst < /root/default.conf.tpl > /etc/nginx/conf.d/default.conf && exec nginx -g \"daemon off;\""' >> /usr/local/bin/entrypoint.sh \
+ && echo '/bin/sh -c "envsubst < /root/default.conf.tpl > /etc/nginx/conf.d/default.conf && (cat /etc/nginx/conf.d/default.conf | grep listen) && (cat /etc/nginx/conf.d/default.conf | grep server_name) && exec nginx -g \"daemon off;\""' >> /usr/local/bin/entrypoint.sh \
+ && chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT entrypoint.sh
+CMD /bin/sh
+COPY ./docker/default.conf.tpl /root/default.conf.tpl
+COPY ./frontend/dist/frontend /usr/share/nginx/html
+#end::content[]

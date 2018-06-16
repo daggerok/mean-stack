@@ -1,5 +1,6 @@
 service:
 - docker
+
 apt:
   update: true
   packages:
@@ -8,6 +9,7 @@ apt:
   - fonts-liberation
   - docker-ce
   - python-pip
+
 install: true
 before_script:
 - export CHROME_BIN=/usr/bin/google-chrome
@@ -32,10 +34,11 @@ script:
 - npm build
 - npm dist
 #
-- docker build -t daggerok/mean-stack:frontend .
-- docker run -d --rm -p 80:80 --name run-mean-stack-frontend daggerok/mean-stack:frontend
+- cd $root
+- docker build -f Docker.frontend -t daggerok/mean-stack:frontend ./frontend
+- docker run -d --rm -p 80:80 -e "PORT=80" --name run-mean-stack-frontend daggerok/mean-stack:frontend
 - sleep 1
-- http :80/
+- http http://127.0.0.1:80/
 - docker stop run-mean-stack-frontend
 
 env:
@@ -50,6 +53,7 @@ java: oraclejdk8
 before_deploy:
 - cd $root
 - ./gradlew documentation
+
 deploy:
   provider: pages
   skip-cleanup: true

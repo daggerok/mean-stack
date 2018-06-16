@@ -93,10 +93,28 @@ docker stop run-mean-stack-frontend
 
 === frontend
 
+.prepare frontend Dockerfile (`Dockerfile.frontend` file):
+[source,bash]
+----
+include::../../Dockerfile.frontend[tags=content]
+----
+
+.prepare nginx config template (`docke/default.conf.tpl` file):
+[source,bash]
+----
+include::../../docke/default.conf.tpl
+----
+
+.prepare `heroku.yml` file:
+[source,bash]
+----
+include::../../heroku.yml
+----
+
 .create heroku application
 [source,bash]
 ----
-heroku create daggerok-mean-stack-frontend
+heroku create daggerok-mean-stack-frontend --stack=container
 
 # output:
 Creating ⬢ daggerok-mean-stack-frontend... done
