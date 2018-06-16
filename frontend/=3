@@ -1,4 +1,0 @@
-+ jasmine@3.1.0
-updated 1 package and audited 22288 packages in 7.722s
-found 6 vulnerabilities (1 low, 5 moderate)
-  run `npm audit fix` to fix them, or `npm audit` for details
