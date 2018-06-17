@@ -1,0 +1,7 @@
+{
+  "name": "MEAN stack",
+  "description": "Node.js app using Angular 6",
+  "repository": "https://github.com/daggerok/mean-stack",
+  "logo": "https://daggerok-mean-stack.herokuapp.com/assets/favicon.png",
+  "keywords": ["angular", "angular6", "nginx", "static"]
+}
