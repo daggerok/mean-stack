@@ -149,6 +149,7 @@ https://daggerok-mean-stack-frontend.herokuapp.com/ | https://git.heroku.com/dag
 .push app
 [source,bash]
 ----
+cp -Rf ./.gitignore.heroku ./.gitignore
 cp -Rf ./heroku.yml.frontend ./heroku.yml
 cp -Rf ./.dockerignore.frontend ./.dockerignore
 
