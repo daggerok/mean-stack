@@ -153,16 +153,10 @@ NOTE: Here we will be using `Dockerfile.frontend-build` file instead.
       This file also contains instructions for project build using npm.
       We wanna simply delegate everything to `git push heroku master` instruction
 
-.prepare frontend Dockerfile (`Dockerfile.frontend-build` file):
+.prepare frontend-build Dockerfile (`Dockerfile.frontend-build` file):
 [source,bash]
 ----
 include::../../Dockerfile.frontend-build[tags=content]
-----
-
-.and also prepare `docke/default.conf.tpl` file:
-[source,bash]
-----
-include::../../docker/default.conf.tpl[]
 ----
 
 .build everything run and test...
