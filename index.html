@@ -540,7 +540,7 @@ table.CodeRay td.code>pre{padding:0}
 <span id="author" class="author">Maksim Kostromin</span><br>
 <span id="email" class="email"><a href="mailto:daggerok@gmail.com">daggerok@gmail.com</a></span><br>
 <span id="revnumber">version 0.0.1,</span>
-<span id="revdate">2018-06-17 00:13:07 UTC</span>
+<span id="revdate">2018-06-17 00:38:26 UTC</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -567,7 +567,11 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 </ul>
 </li>
-<li><a href="#docker-can-also-build">5. docker can also build&#8230;&#8203;</a></li>
+<li><a href="#docker-can-also-build">5. docker can also build&#8230;&#8203;</a>
+<ul class="sectlevel3">
+<li><a href="#same-but-build-in-heroku">5.1. same, but build in heroku</a></li>
+</ul>
+</li>
 <li><a href="#links">6. Links</a></li>
 </ul>
 </div>
@@ -729,23 +733,14 @@ Idea is very simple:
 <td class="content">
 We will be using <code>Dockerfile.frontend-build</code> file instead.
       This file also contains instructions for project build using npm.
-      We wanna simply delegate everything to <code>git push heroku master</code> instruction
 </td>
 </tr>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">prepare frontend Dockerfile (<code>Dockerfile.frontend-build</code> file):</div>
+<div class="title">prepare frontend Dockerfile (<code>Dockerfile.frontend</code> file):</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">FROM node:8.11-alpine
-LABEL MAINTAINER=&quot;Maksim Kostromin https://github.com/daggerok&quot;
-WORKDIR /root/mean-stack/frontend
-COPY ./frontend .
-COPY ./docker/default.conf.tpl /root/default.conf.tpl
-RUN npm i \
- &amp;&amp; npm run dist
-
-FROM nginx:1.15.0-alpine
+<pre class="CodeRay highlight"><code data-lang="bash">FROM nginx:1.15.0-alpine
 LABEL MAINTAINER=&quot;Maksim Kostromin https://github.com/daggerok&quot;
 ARG PORT_ARG=&quot;80&quot;
 ARG HOST_ARG=&quot;localhost&quot;
@@ -763,9 +758,8 @@ RUN apk add --update --no-cache libintl curl \
  &amp;&amp; chmod +x /usr/local/bin/entrypoint.sh
 ENTRYPOINT entrypoint.sh
 CMD /bin/bash
-#CMD entrypoint.sh
-COPY --from=0 /root/default.conf.tpl /root/default.conf.tpl
-COPY --from=0 /root/mean-stack/frontend/dist/frontend /usr/share/nginx/html</code></pre>
+COPY ./docker/default.conf.tpl /root/default.conf.tpl
+COPY ./frontend/dist/frontend /usr/share/nginx/html</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -806,6 +800,15 @@ COPY --from=0 /root/mean-stack/frontend/dist/frontend /usr/share/nginx/html</cod
 <div class="sect3">
 <h4 id="create-and-deploy-heroku-app"><a class="anchor" href="#create-and-deploy-heroku-app"></a>4.1.3. create and deploy heroku app</h4>
 <div class="listingblock">
+<div class="title">build app</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">cd ./frontend
+npm i
+npm run dist
+cd ..</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">create heroku application</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="bash">heroku create daggerok-mean-stack-frontend --stack=container
@@ -819,8 +822,9 @@ https://daggerok-mean-stack-frontend.herokuapp.com/ | https://git.heroku.com/dag
 <div class="listingblock">
 <div class="title">push app</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">cp -Rf ./heroku.yml.frontend-build ./heroku.yml
-cp -Rf ./.dockerignore.frontend-build ./.dockerignore
+<pre class="CodeRay highlight"><code data-lang="bash">cp -Rf ./.gitignore.heroku ./.gitignore
+cp -Rf ./heroku.yml.frontend ./heroku.yml
+cp -Rf ./.dockerignore.frontend ./.dockerignore
 
 git add .
 git commit -am &quot;Deploy heroku app.&quot;
@@ -877,7 +881,6 @@ RUN apk add --update --no-cache libintl curl \
  &amp;&amp; chmod +x /usr/local/bin/entrypoint.sh
 ENTRYPOINT entrypoint.sh
 CMD /bin/bash
-#CMD entrypoint.sh
 COPY --from=0 /root/default.conf.tpl /root/default.conf.tpl
 COPY --from=0 /root/mean-stack/frontend/dist/frontend /usr/share/nginx/html</code></pre>
 </div>
@@ -889,6 +892,19 @@ COPY --from=0 /root/mean-stack/frontend/dist/frontend /usr/share/nginx/html</cod
 docker run -d --rm --name run-mean-stack-frontend-build -p 80:80 daggerok/mean-stack-frontend-build
 open http://0.0.0.0/
 docker stop run-mean-stack-frontend-build</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="same-but-build-in-heroku"><a class="anchor" href="#same-but-build-in-heroku"></a>5.1. same, but build in heroku</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">cp -Rf ./.gitignore.local ./.gitignore
+cp -Rf ./heroku.yml.frontend-build ./heroku.yml
+cp -Rf ./.dockerignore.frontend-build ./.dockerignore
+git add .
+git commit -am &quot;Deploy heroku app.&quot;
+git push heroku master</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -908,7 +924,7 @@ docker stop run-mean-stack-frontend-build</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2018-06-17 00:13:07 UTC
+Last updated 2018-06-17 00:38:26 UTC
 </div>
 </div>
 </body>
