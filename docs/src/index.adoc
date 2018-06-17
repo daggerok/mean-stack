@@ -181,20 +181,21 @@ open http://0.0.0.0/
 docker stop run-mean-stack-frontend-build
 ----
 
-==== same, but build with heroku
+==== same, but build in heroku
 
 [source,bash]
+////
+cp -Rf ./heroku.yml.frontend-build ./heroku.yml
+cp -Rf ./.dockerignore.frontend-build ./.dockerignore
+////
 ----
-heroku create daggerok-mean-stack-frontend --stack=container
-cp -Rf ./.gitignore.heroku ./.gitignore
+cp -Rf ./.gitignore.local ./.gitignore
 cp -Rf ./heroku.yml.frontend-build ./heroku.yml
 cp -Rf ./.dockerignore.frontend-build ./.dockerignore
 git add .
 git commit -am "Deploy heroku app."
 git push heroku master
 ----
-//cp -Rf ./heroku.yml.frontend-build ./heroku.yml
-//cp -Rf ./.dockerignore.frontend-build ./.dockerignore
 
 == Links
 
