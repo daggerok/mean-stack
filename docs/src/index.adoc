@@ -101,13 +101,14 @@ TIP: Idea is very simple:
 
 NOTE: We will be using `Dockerfile.frontend-build` file instead.
       This file also contains instructions for project build using npm.
-      We wanna simply delegate everything to `git push heroku master` instruction
+//      We wanna simply delegate everything to `git push heroku master` instruction
 
-.prepare frontend Dockerfile (`Dockerfile.frontend-build` file):
+.prepare frontend Dockerfile (`Dockerfile.frontend` file):
 [source,bash]
 ----
-include::../../Dockerfile.frontend-build[tags=content]
+include::../../Dockerfile.frontend[tags=content]
 ----
+//include::../../Dockerfile.frontend-build[tags=content]
 
 .prepare nginx config template (`docke/default.conf.tpl` file) to be used by Dockerfil during image build:
 [source,bash]
@@ -139,13 +140,15 @@ https://daggerok-mean-stack-frontend.herokuapp.com/ | https://git.heroku.com/dag
 .push app
 [source,bash]
 ----
-cp -Rf ./heroku.yml.frontend-build ./heroku.yml
-cp -Rf ./.dockerignore.frontend-build ./.dockerignore
+cp -Rf ./heroku.yml.frontend ./heroku.yml
+cp -Rf ./.dockerignore.frontend ./.dockerignore
 
 git add .
 git commit -am "Deploy heroku app."
 git push heroku master
 ----
+//cp -Rf ./heroku.yml.frontend-build ./heroku.yml
+//cp -Rf ./.dockerignore.frontend-build ./.dockerignore
 
 == docker can also build...
 
