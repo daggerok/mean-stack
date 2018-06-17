@@ -1,5 +1,7 @@
 # Frontend [![Build Status](https://travis-ci.org/daggerok/mean-stack.svg?branch=master)](https://travis-ci.org/daggerok/mean-stack)
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/daggerok/mean-stack)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 ## Development server

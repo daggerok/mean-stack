@@ -1,5 +1,7 @@
 = MEAN stack image:https://travis-ci.org/daggerok/mean-stack.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/mean-stack"]
 
+image:https://www.herokucdn.com/deploy/button.svg["Deploy", link="https://github.com/daggerok/mean-stack"]
+
 //tag::content[]
 Read link:https://daggerok.github.io/mean-stack[reference documentation]
 
