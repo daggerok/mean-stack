@@ -126,6 +126,15 @@ include::../../heroku.yml[]
 
 ==== create and deploy heroku app
 
+.build app
+[source,bash]
+----
+cd ./frontend
+npm i
+npm run dist
+cd ..
+----
+
 .create heroku application
 [source,bash]
 ----
