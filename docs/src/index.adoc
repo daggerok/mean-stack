@@ -101,7 +101,6 @@ TIP: Idea is very simple:
 
 NOTE: We will be using `Dockerfile.frontend-build` file instead.
       This file also contains instructions for project build using npm.
-//      We wanna simply delegate everything to `git push heroku master` instruction
 
 .prepare frontend Dockerfile (`Dockerfile.frontend` file):
 [source,bash]
@@ -121,7 +120,7 @@ include::../../docker/default.conf.tpl[]
 .prepare `heroku.yml` file:
 [source,yaml]
 ----
-include::../../heroku.yml[]
+include::../../heroku.yml.frontend[]
 ----
 
 ==== create and deploy heroku app
@@ -169,7 +168,6 @@ NOTE: Here we will be using `Dockerfile.frontend-build` file instead.
 .prepare frontend-build Dockerfile (`Dockerfile.frontend-build` file):
 [source,bash]
 ----
-
 include::../../Dockerfile.frontend-build[tags=content]
 ----
 
@@ -183,6 +181,14 @@ docker stop run-mean-stack-frontend-build
 ----
 
 === same, but build in heroku
+
+NOTE: Here, we wanna simply delegate everything to `git push heroku master` instruction
+
+.prepare `heroku.yml` file:
+[source,yaml]
+----
+include::../../heroku.yml.frontend-build[]
+----
 
 [source,bash]
 ////
