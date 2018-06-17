@@ -540,7 +540,7 @@ table.CodeRay td.code>pre{padding:0}
 <span id="author" class="author">Maksim Kostromin</span><br>
 <span id="email" class="email"><a href="mailto:daggerok@gmail.com">daggerok@gmail.com</a></span><br>
 <span id="revnumber">version 0.0.1,</span>
-<span id="revdate">2018-06-17 01:05:18 UTC</span>
+<span id="revdate">2018-06-17 01:08:07 UTC</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -740,7 +740,7 @@ We will be using <code>Dockerfile.frontend-build</code> file instead.
 <div class="listingblock">
 <div class="title">prepare frontend Dockerfile (<code>Dockerfile.frontend</code> file):</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">FROM nginx:1.15.0-alpine
+<pre class="CodeRay highlight"><code data-lang="Dockerfile">FROM nginx:1.15.0-alpine
 LABEL MAINTAINER=&quot;Maksim Kostromin https://github.com/daggerok&quot;
 ARG PORT_ARG=&quot;80&quot;
 ARG HOST_ARG=&quot;localhost&quot;
@@ -765,7 +765,7 @@ COPY ./frontend/dist/frontend /usr/share/nginx/html</code></pre>
 <div class="listingblock">
 <div class="title">prepare nginx config template (<code>docke/default.conf.tpl</code> file) to be used by Dockerfil during image build:</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">server {
+<pre class="CodeRay highlight"><code data-lang="nginx">server {
   listen      ${PORT};
   server_name ${HOST};
   charset     utf-8;
@@ -791,9 +791,9 @@ COPY ./frontend/dist/frontend /usr/share/nginx/html</code></pre>
 <div class="listingblock">
 <div class="title">prepare <code>heroku.yml</code> file:</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">build:
-  docker:
-    web: Dockerfile.frontend</code></pre>
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">build</span>:
+  <span class="key">docker</span>:
+    <span class="key">web</span>: <span class="string"><span class="content">Dockerfile.frontend</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -855,7 +855,7 @@ Here we will be using <code>Dockerfile.frontend-build</code> file instead.
 <div class="listingblock">
 <div class="title">prepare frontend-build Dockerfile (<code>Dockerfile.frontend-build</code> file):</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">FROM node:8.11-alpine
+<pre class="CodeRay highlight"><code data-lang="docker">FROM node:8.11-alpine
 LABEL MAINTAINER=&quot;Maksim Kostromin https://github.com/daggerok&quot;
 WORKDIR /root/mean-stack/frontend
 COPY ./frontend .
@@ -924,7 +924,7 @@ git push heroku master</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2018-06-17 01:05:18 UTC
+Last updated 2018-06-17 01:08:07 UTC
 </div>
 </div>
 </body>
