@@ -540,7 +540,7 @@ table.CodeRay td.code>pre{padding:0}
 <span id="author" class="author">Maksim Kostromin</span><br>
 <span id="email" class="email"><a href="mailto:daggerok@gmail.com">daggerok@gmail.com</a></span><br>
 <span id="revnumber">version 0.0.1,</span>
-<span id="revdate">2018-06-17 02:09:00 EEST</span>
+<span id="revdate">2018-06-17 04:29:31 EEST</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -567,7 +567,12 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 </ul>
 </li>
-<li><a href="#links">5. Links</a></li>
+<li><a href="#docker-can-also-build">5. docker can also build&#8230;&#8203;</a>
+<ul class="sectlevel2">
+<li><a href="#same-but-build-in-heroku">5.1. same, but build in heroku</a></li>
+</ul>
+</li>
+<li><a href="#links">6. Links</a></li>
 </ul>
 </div>
 </div>
@@ -584,7 +589,7 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://daggerok.github.io/mean-stack">Read reference documentation</a></p>
+<p>Read <a href="https://daggerok.github.io/mean-stack">reference documentation</a></p>
 </div>
 <div class="ulist">
 <ul>
@@ -612,44 +617,44 @@ table.CodeRay td.code>pre{padding:0}
 <div class="listingblock">
 <div class="title">configure material design as separed module (<code>app-angular-material.module.ts</code> file):</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="typescript">// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+<pre class="CodeRay highlight"><code data-lang="javascript"><span class="comment">// import { NoopAnimationsModule } from '@angular/platform-browser/animations';</span>
+<span class="reserved">import</span> { BrowserAnimationsModule } from <span class="string"><span class="delimiter">'</span><span class="content">@angular/platform-browser/animations</span><span class="delimiter">'</span></span>;
 
-import { MatToolbarModule } from '@angular/material';
+<span class="reserved">import</span> { MatToolbarModule } from <span class="string"><span class="delimiter">'</span><span class="content">@angular/material</span><span class="delimiter">'</span></span>;
 
 const modules = [
-  // NoopAnimationsModule,
+  <span class="comment">// NoopAnimationsModule,</span>
   BrowserAnimationsModule,
   MatToolbarModule,
 ];
 
-@NgModule({
-  imports: modules,
-  exports: modules,
+<span class="error">@</span>NgModule({
+  <span class="key">imports</span>: modules,
+  <span class="key">exports</span>: modules,
 })
-export class AppAngularMaterialModule { }</code></pre>
+<span class="reserved">export</span> <span class="reserved">class</span> AppAngularMaterialModule { }</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">configure application routes (<code>app-routing.module.ts</code> file):</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="typescript">import { Routes, RouterModule } from '@angular/router';
-import { CreateComponent } from './components/create/create.component';
-import { EditComponent } from './components/edit/edit.component';
-import { ListComponent } from './components/list/list.component';
+<pre class="CodeRay highlight"><code data-lang="javascript"><span class="reserved">import</span> { Routes, RouterModule } from <span class="string"><span class="delimiter">'</span><span class="content">@angular/router</span><span class="delimiter">'</span></span>;
+<span class="reserved">import</span> { CreateComponent } from <span class="string"><span class="delimiter">'</span><span class="content">./components/create/create.component</span><span class="delimiter">'</span></span>;
+<span class="reserved">import</span> { EditComponent } from <span class="string"><span class="delimiter">'</span><span class="content">./components/edit/edit.component</span><span class="delimiter">'</span></span>;
+<span class="reserved">import</span> { ListComponent } from <span class="string"><span class="delimiter">'</span><span class="content">./components/list/list.component</span><span class="delimiter">'</span></span>;
 
 const routes: Routes = [
-  { path: 'create', component: CreateComponent },
-  { path: 'edit/:id', component: EditComponent },
-  { path: 'list', component: ListComponent },
-  { path: '**', redirectTo: 'list', pathMatch: 'full' },
+  { <span class="key">path</span>: <span class="string"><span class="delimiter">'</span><span class="content">create</span><span class="delimiter">'</span></span>, <span class="key">component</span>: CreateComponent },
+  { <span class="key">path</span>: <span class="string"><span class="delimiter">'</span><span class="content">edit/:id</span><span class="delimiter">'</span></span>, <span class="key">component</span>: EditComponent },
+  { <span class="key">path</span>: <span class="string"><span class="delimiter">'</span><span class="content">list</span><span class="delimiter">'</span></span>, <span class="key">component</span>: ListComponent },
+  { <span class="key">path</span>: <span class="string"><span class="delimiter">'</span><span class="content">**</span><span class="delimiter">'</span></span>, <span class="key">redirectTo</span>: <span class="string"><span class="delimiter">'</span><span class="content">list</span><span class="delimiter">'</span></span>, <span class="key">pathMatch</span>: <span class="string"><span class="delimiter">'</span><span class="content">full</span><span class="delimiter">'</span></span> },
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+<span class="error">@</span>NgModule({
+  <span class="key">imports</span>: [RouterModule.forRoot(routes)],
+  <span class="key">exports</span>: [RouterModule]
 })
-export class AppRoutingModule { }</code></pre>
+<span class="reserved">export</span> <span class="reserved">class</span> AppRoutingModule { }</code></pre>
 </div>
 </div>
 </div>
@@ -670,7 +675,8 @@ npm run dist</code></pre>
 <div class="listingblock">
 <div class="title">build docker image based on nginx</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">docker build -f Dockerfile.frontend -t daggerok/mean-stack:frontend ./frontend</code></pre>
+<pre class="CodeRay highlight"><code data-lang="bash">cp -Rf ./.dockerignore.frontend ./.dockerignore
+docker build -f Dockerfile.frontend -t daggerok/mean-stack:frontend ./frontend</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -708,7 +714,8 @@ npm run dist</code></pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Idea is simple: as far nginx doesn;t support environment variables,
+Idea is very simple:
+     as far nginx doesn&#8217;t support environment variables,
      but heroku is required ENV <code>$PORT</code> to be used,
      we can create nginx default.conf template
      and during build or bootstrap generate and replace it in nginx.
@@ -717,16 +724,29 @@ Idea is simple: as far nginx doesn;t support environment variables,
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We will be using <code>Dockerfile.frontend-build</code> file instead.
+      This file also contains instructions for project build using npm.
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="title">prepare frontend Dockerfile (<code>Dockerfile.frontend</code> file):</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">FROM nginx:1.15.0-alpine
+<pre class="CodeRay highlight"><code data-lang="docker">FROM nginx:1.15.0-alpine
 LABEL MAINTAINER=&quot;Maksim Kostromin https://github.com/daggerok&quot;
 ARG PORT_ARG=&quot;80&quot;
 ARG HOST_ARG=&quot;localhost&quot;
 ENV PORT=${PORT_ARG}
 ENV HOST=${HOST_ARG}
-RUN apk add --update --no-cache libintl \
+RUN apk add --update --no-cache libintl curl \
  &amp;&amp; apk add --no-cache --virtual build_deps gettext \
  &amp;&amp; cp /usr/bin/envsubst /usr/local/bin/envsubst \
  &amp;&amp; apk del build_deps \
@@ -737,32 +757,32 @@ RUN apk add --update --no-cache libintl \
  &amp;&amp; echo '/bin/sh -c &quot;envsubst &lt; /root/default.conf.tpl &gt; /etc/nginx/conf.d/default.conf &amp;&amp; (cat /etc/nginx/conf.d/default.conf | grep listen) &amp;&amp; (cat /etc/nginx/conf.d/default.conf | grep server_name) &amp;&amp; exec nginx -g \&quot;daemon off;\&quot;&quot;' &gt;&gt; /usr/local/bin/entrypoint.sh \
  &amp;&amp; chmod +x /usr/local/bin/entrypoint.sh
 ENTRYPOINT entrypoint.sh
-CMD /bin/sh
+CMD /bin/bash
 COPY ./docker/default.conf.tpl /root/default.conf.tpl
 COPY ./frontend/dist/frontend /usr/share/nginx/html</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">prepare nginx config template (<code>docke/default.conf.tpl</code> file):</div>
+<div class="title">prepare nginx config template (<code>docke/default.conf.tpl</code> file) to be used by Dockerfil during image build:</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">server {
-  listen      ${PORT};
-  server_name ${HOST};
-  charset     utf-8;
+<pre class="CodeRay highlight"><code data-lang="lua">server <span class="map"><span class="delimiter">{</span>
+  listen      <span class="error">$</span><span class="map"><span class="inline-delimiter">{</span>PORT<span class="inline-delimiter">}</span></span>;
+  server_name <span class="error">$</span><span class="map"><span class="inline-delimiter">{</span>HOST<span class="inline-delimiter">}</span></span>;
+  charset     utf<span class="integer">-8</span>;
 
-  location / {
+  location / <span class="map"><span class="inline-delimiter">{</span>
     root  /usr/share/nginx/html;
     index index.html index.htm;
     allow all;
-  }
+  <span class="inline-delimiter">}</span></span>
 
-  # redirect some server error pages to the fallback page /index.html
-  error_page 400 404 500 502 503 504 /index.html;
-  location = /index.html {
+  # redirect some server <span class="predefined">error</span> pages to the fallback page /index.html
+  error_page <span class="integer">400</span> <span class="integer">404</span> <span class="integer">500</span> <span class="integer">502</span> <span class="integer">503</span> <span class="integer">504</span> /index.html;
+  <span class="key">location</span> = /index.html <span class="map"><span class="inline-delimiter">{</span>
     root  /usr/share/nginx/html;
     allow all;
-  }
-}</code></pre>
+  <span class="inline-delimiter">}</span></span>
+<span class="delimiter">}</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -771,28 +791,42 @@ COPY ./frontend/dist/frontend /usr/share/nginx/html</code></pre>
 <div class="listingblock">
 <div class="title">prepare <code>heroku.yml</code> file:</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">build:
-  docker:
-    frontend-build: Dockerfile.frontend-build</code></pre>
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">build</span>:
+  <span class="key">docker</span>:
+    <span class="key">web</span>: <span class="string"><span class="content">Dockerfile.frontend</span></span></code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="create-and-deploy-heroku-app"><a class="anchor" href="#create-and-deploy-heroku-app"></a>4.1.3. create and deploy heroku app</h4>
 <div class="listingblock">
+<div class="title">build app</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">cd ./frontend
+npm i
+npm run dist
+cd ..</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">create heroku application</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="bash">heroku create daggerok-mean-stack-frontend --stack=container
 
 # output:
-Creating ⬢ daggerok-mean-stack-frontend... done
+
+Creating ⬢ daggerok-mean-stack-frontend... done, stack is container
 https://daggerok-mean-stack-frontend.herokuapp.com/ | https://git.heroku.com/daggerok-mean-stack-frontend.git</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">push app</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">git add .
+<pre class="CodeRay highlight"><code data-lang="bash">cp -Rf ./.gitignore.heroku ./.gitignore
+cp -Rf ./heroku.yml.frontend ./heroku.yml
+cp -Rf ./.dockerignore.frontend ./.dockerignore
+
+git add .
 git commit -am &quot;Deploy heroku app.&quot;
 git push heroku master</code></pre>
 </div>
@@ -802,7 +836,81 @@ git push heroku master</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="links"><a class="anchor" href="#links"></a>5. Links</h2>
+<h2 id="docker-can-also-build"><a class="anchor" href="#docker-can-also-build"></a>5. docker can also build&#8230;&#8203;</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Here we will be using <code>Dockerfile.frontend-build</code> file instead.
+      This file also contains instructions for project build using npm.
+      We wanna simply delegate everything to <code>git push heroku master</code> instruction
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">prepare frontend-build Dockerfile (<code>Dockerfile.frontend-build</code> file):</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="docker">FROM node:8.11-alpine
+LABEL MAINTAINER=&quot;Maksim Kostromin https://github.com/daggerok&quot;
+WORKDIR /root/mean-stack/frontend
+COPY ./frontend .
+COPY ./docker/default.conf.tpl /root/default.conf.tpl
+RUN npm i \
+ &amp;&amp; npm run dist
+
+FROM nginx:1.15.0-alpine
+LABEL MAINTAINER=&quot;Maksim Kostromin https://github.com/daggerok&quot;
+ARG PORT_ARG=&quot;80&quot;
+ARG HOST_ARG=&quot;localhost&quot;
+ENV PORT=${PORT_ARG}
+ENV HOST=${HOST_ARG}
+RUN apk add --update --no-cache libintl curl \
+ &amp;&amp; apk add --no-cache --virtual build_deps gettext \
+ &amp;&amp; cp /usr/bin/envsubst /usr/local/bin/envsubst \
+ &amp;&amp; apk del build_deps \
+ &amp;&amp; echo '#!/bin/sh' &gt;&gt; /usr/local/bin/entrypoint.sh \
+ &amp;&amp; echo 'PORT=${PORT:=80}' &gt;&gt; /usr/local/bin/entrypoint.sh \
+ &amp;&amp; echo 'HOST=${HOST:=localhost}' &gt;&gt; /usr/local/bin/entrypoint.sh \
+ &amp;&amp; echo '#/bin/sh -c &quot;envsubst &lt; /root/default.conf.tpl &gt; /etc/nginx/conf.d/default.conf &amp;&amp; exec nginx -g \&quot;daemon off;\&quot;&quot;' &gt;&gt; /usr/local/bin/entrypoint.sh \
+ &amp;&amp; echo '/bin/sh -c &quot;envsubst &lt; /root/default.conf.tpl &gt; /etc/nginx/conf.d/default.conf &amp;&amp; (cat /etc/nginx/conf.d/default.conf | grep listen) &amp;&amp; (cat /etc/nginx/conf.d/default.conf | grep server_name) &amp;&amp; exec nginx -g \&quot;daemon off;\&quot;&quot;' &gt;&gt; /usr/local/bin/entrypoint.sh \
+ &amp;&amp; chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT entrypoint.sh
+CMD /bin/bash
+COPY --from=0 /root/default.conf.tpl /root/default.conf.tpl
+COPY --from=0 /root/mean-stack/frontend/dist/frontend /usr/share/nginx/html</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">build everything run and test&#8230;&#8203;</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">docker build --rm --no-cache -f Dockerfile.frontend-build -t daggerok/mean-stack-frontend-build .
+docker run -d --rm --name run-mean-stack-frontend-build -p 80:80 daggerok/mean-stack-frontend-build
+open http://0.0.0.0/
+docker stop run-mean-stack-frontend-build</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="same-but-build-in-heroku"><a class="anchor" href="#same-but-build-in-heroku"></a>5.1. same, but build in heroku</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">cp -Rf ./.gitignore.local ./.gitignore
+cp -Rf ./heroku.yml.frontend-build ./heroku.yml
+cp -Rf ./.dockerignore.frontend-build ./.dockerignore
+git add .
+git commit -am &quot;Deploy heroku app.&quot;
+git push heroku master</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="links"><a class="anchor" href="#links"></a>6. Links</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="./index.pdf">Documentation in PFD format</a></p>
@@ -810,13 +918,16 @@ git push heroku master</code></pre>
 <div class="paragraph">
 <p><a href="https://github.com/daggerok/mean-stack">GitHub</a></p>
 </div>
+<div class="paragraph">
+<p><a href="https://asciidoctor.org/docs/user-manual/#source-code-blocks">asciidoctor reference&#8230;&#8203;</a></p>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2018-06-17 02:09:00 EEST
+Last updated 2018-06-17 04:29:31 EEST
 </div>
 </div>
 </body>

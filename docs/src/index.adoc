@@ -39,13 +39,13 @@ ng add @angular/material
 .add application components
 
 .configure material design as separed module (`app-angular-material.module.ts` file):
-[source,typescript]
+[source,javascript]
 ----
 include::../../frontend/src/app/app-angular-material.module.ts[tags=content]
 ----
 
 .configure application routes (`app-routing.module.ts` file):
-[source,typescript]
+[source,javascript]
 ----
 include::../../frontend/src/app/app-routing.module.ts[tags=content]
 ----
@@ -104,14 +104,14 @@ NOTE: We will be using `Dockerfile.frontend-build` file instead.
 //      We wanna simply delegate everything to `git push heroku master` instruction
 
 .prepare frontend Dockerfile (`Dockerfile.frontend` file):
-[source,Dockerfile]
+[source,bash]
 ----
 include::../../Dockerfile.frontend[tags=content]
 ----
 //include::../../Dockerfile.frontend-build[tags=content]
 
 .prepare nginx config template (`docke/default.conf.tpl` file) to be used by Dockerfil during image build:
-[source,nginx]
+[source,lua]
 ----
 include::../../docker/default.conf.tpl[]
 ----
@@ -167,8 +167,9 @@ NOTE: Here we will be using `Dockerfile.frontend-build` file instead.
       We wanna simply delegate everything to `git push heroku master` instruction
 
 .prepare frontend-build Dockerfile (`Dockerfile.frontend-build` file):
-[source,docker]
+[source,bash]
 ----
+
 include::../../Dockerfile.frontend-build[tags=content]
 ----
 
@@ -181,7 +182,7 @@ open http://0.0.0.0/
 docker stop run-mean-stack-frontend-build
 ----
 
-==== same, but build in heroku
+=== same, but build in heroku
 
 [source,bash]
 ////
@@ -202,6 +203,8 @@ git push heroku master
 ifdef::backend-html5[link:./index.pdf[Documentation in PFD format]]
 
 link:https://github.com/daggerok/{root-project-name}[GitHub]
+
+link:https://asciidoctor.org/docs/user-manual/#source-code-blocks[asciidoctor reference...]
 
 ////
 link:https://gitlab.com/daggerok/findbugs-example[GitLab]

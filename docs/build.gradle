@@ -26,6 +26,8 @@ asciidoctor {
       idseparator: '-',
       setanchors: 'true',
       imagesdir: './static/images',
+      //'source-highlighter': 'prettify',
+      //'source-highlighter': 'highlightjs',
       'source-highlighter': 'coderay',
       'toc-title': 'Table of Contents',
       'root-project-name': rootProject.name,
