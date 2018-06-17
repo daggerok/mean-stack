@@ -540,7 +540,7 @@ table.CodeRay td.code>pre{padding:0}
 <span id="author" class="author">Maksim Kostromin</span><br>
 <span id="email" class="email"><a href="mailto:daggerok@gmail.com">daggerok@gmail.com</a></span><br>
 <span id="revnumber">version 0.0.1,</span>
-<span id="revdate">2018-06-16 23:56:47 UTC</span>
+<span id="revdate">2018-06-17 00:13:07 UTC</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -751,7 +751,7 @@ ARG PORT_ARG=&quot;80&quot;
 ARG HOST_ARG=&quot;localhost&quot;
 ENV PORT=${PORT_ARG}
 ENV HOST=${HOST_ARG}
-RUN apk add --update --no-cache libintl \
+RUN apk add --update --no-cache libintl curl \
  &amp;&amp; apk add --no-cache --virtual build_deps gettext \
  &amp;&amp; cp /usr/bin/envsubst /usr/local/bin/envsubst \
  &amp;&amp; apk del build_deps \
@@ -762,7 +762,8 @@ RUN apk add --update --no-cache libintl \
  &amp;&amp; echo '/bin/sh -c &quot;envsubst &lt; /root/default.conf.tpl &gt; /etc/nginx/conf.d/default.conf &amp;&amp; (cat /etc/nginx/conf.d/default.conf | grep listen) &amp;&amp; (cat /etc/nginx/conf.d/default.conf | grep server_name) &amp;&amp; exec nginx -g \&quot;daemon off;\&quot;&quot;' &gt;&gt; /usr/local/bin/entrypoint.sh \
  &amp;&amp; chmod +x /usr/local/bin/entrypoint.sh
 ENTRYPOINT entrypoint.sh
-CMD /bin/sh
+CMD /bin/bash
+#CMD entrypoint.sh
 COPY --from=0 /root/default.conf.tpl /root/default.conf.tpl
 COPY --from=0 /root/mean-stack/frontend/dist/frontend /usr/share/nginx/html</code></pre>
 </div>
@@ -798,7 +799,7 @@ COPY --from=0 /root/mean-stack/frontend/dist/frontend /usr/share/nginx/html</cod
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="bash">build:
   docker:
-    frontend: Dockerfile.frontend</code></pre>
+    web: Dockerfile.frontend-build</code></pre>
 </div>
 </div>
 </div>
@@ -848,7 +849,7 @@ Here we will be using <code>Dockerfile.frontend-build</code> file instead.
 </table>
 </div>
 <div class="listingblock">
-<div class="title">prepare frontend Dockerfile (<code>Dockerfile.frontend-build</code> file):</div>
+<div class="title">prepare frontend-build Dockerfile (<code>Dockerfile.frontend-build</code> file):</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="bash">FROM node:8.11-alpine
 LABEL MAINTAINER=&quot;Maksim Kostromin https://github.com/daggerok&quot;
@@ -864,7 +865,7 @@ ARG PORT_ARG=&quot;80&quot;
 ARG HOST_ARG=&quot;localhost&quot;
 ENV PORT=${PORT_ARG}
 ENV HOST=${HOST_ARG}
-RUN apk add --update --no-cache libintl \
+RUN apk add --update --no-cache libintl curl \
  &amp;&amp; apk add --no-cache --virtual build_deps gettext \
  &amp;&amp; cp /usr/bin/envsubst /usr/local/bin/envsubst \
  &amp;&amp; apk del build_deps \
@@ -875,32 +876,10 @@ RUN apk add --update --no-cache libintl \
  &amp;&amp; echo '/bin/sh -c &quot;envsubst &lt; /root/default.conf.tpl &gt; /etc/nginx/conf.d/default.conf &amp;&amp; (cat /etc/nginx/conf.d/default.conf | grep listen) &amp;&amp; (cat /etc/nginx/conf.d/default.conf | grep server_name) &amp;&amp; exec nginx -g \&quot;daemon off;\&quot;&quot;' &gt;&gt; /usr/local/bin/entrypoint.sh \
  &amp;&amp; chmod +x /usr/local/bin/entrypoint.sh
 ENTRYPOINT entrypoint.sh
-CMD /bin/sh
+CMD /bin/bash
+#CMD entrypoint.sh
 COPY --from=0 /root/default.conf.tpl /root/default.conf.tpl
 COPY --from=0 /root/mean-stack/frontend/dist/frontend /usr/share/nginx/html</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">and also prepare <code>docke/default.conf.tpl</code> file:</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">server {
-  listen      ${PORT};
-  server_name ${HOST};
-  charset     utf-8;
-
-  location / {
-    root  /usr/share/nginx/html;
-    index index.html index.htm;
-    allow all;
-  }
-
-  # redirect some server error pages to the fallback page /index.html
-  error_page 400 404 500 502 503 504 /index.html;
-  location = /index.html {
-    root  /usr/share/nginx/html;
-    allow all;
-  }
-}</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -929,7 +908,7 @@ docker stop run-mean-stack-frontend-build</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2018-06-16 23:56:47 UTC
+Last updated 2018-06-17 00:13:07 UTC
 </div>
 </div>
 </body>
