@@ -540,7 +540,7 @@ table.CodeRay td.code>pre{padding:0}
 <span id="author" class="author">Maksim Kostromin</span><br>
 <span id="email" class="email"><a href="mailto:daggerok@gmail.com">daggerok@gmail.com</a></span><br>
 <span id="revnumber">version 0.0.1,</span>
-<span id="revdate">2018-06-17 01:08:07 UTC</span>
+<span id="revdate">2018-06-17 01:31:05 UTC</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -568,7 +568,7 @@ table.CodeRay td.code>pre{padding:0}
 </ul>
 </li>
 <li><a href="#docker-can-also-build">5. docker can also build&#8230;&#8203;</a>
-<ul class="sectlevel3">
+<ul class="sectlevel2">
 <li><a href="#same-but-build-in-heroku">5.1. same, but build in heroku</a></li>
 </ul>
 </li>
@@ -617,44 +617,44 @@ table.CodeRay td.code>pre{padding:0}
 <div class="listingblock">
 <div class="title">configure material design as separed module (<code>app-angular-material.module.ts</code> file):</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="typescript">// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+<pre class="CodeRay highlight"><code data-lang="javascript"><span class="comment">// import { NoopAnimationsModule } from '@angular/platform-browser/animations';</span>
+<span class="reserved">import</span> { BrowserAnimationsModule } from <span class="string"><span class="delimiter">'</span><span class="content">@angular/platform-browser/animations</span><span class="delimiter">'</span></span>;
 
-import { MatToolbarModule } from '@angular/material';
+<span class="reserved">import</span> { MatToolbarModule } from <span class="string"><span class="delimiter">'</span><span class="content">@angular/material</span><span class="delimiter">'</span></span>;
 
 const modules = [
-  // NoopAnimationsModule,
+  <span class="comment">// NoopAnimationsModule,</span>
   BrowserAnimationsModule,
   MatToolbarModule,
 ];
 
-@NgModule({
-  imports: modules,
-  exports: modules,
+<span class="error">@</span>NgModule({
+  <span class="key">imports</span>: modules,
+  <span class="key">exports</span>: modules,
 })
-export class AppAngularMaterialModule { }</code></pre>
+<span class="reserved">export</span> <span class="reserved">class</span> AppAngularMaterialModule { }</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">configure application routes (<code>app-routing.module.ts</code> file):</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="typescript">import { Routes, RouterModule } from '@angular/router';
-import { CreateComponent } from './components/create/create.component';
-import { EditComponent } from './components/edit/edit.component';
-import { ListComponent } from './components/list/list.component';
+<pre class="CodeRay highlight"><code data-lang="javascript"><span class="reserved">import</span> { Routes, RouterModule } from <span class="string"><span class="delimiter">'</span><span class="content">@angular/router</span><span class="delimiter">'</span></span>;
+<span class="reserved">import</span> { CreateComponent } from <span class="string"><span class="delimiter">'</span><span class="content">./components/create/create.component</span><span class="delimiter">'</span></span>;
+<span class="reserved">import</span> { EditComponent } from <span class="string"><span class="delimiter">'</span><span class="content">./components/edit/edit.component</span><span class="delimiter">'</span></span>;
+<span class="reserved">import</span> { ListComponent } from <span class="string"><span class="delimiter">'</span><span class="content">./components/list/list.component</span><span class="delimiter">'</span></span>;
 
 const routes: Routes = [
-  { path: 'create', component: CreateComponent },
-  { path: 'edit/:id', component: EditComponent },
-  { path: 'list', component: ListComponent },
-  { path: '**', redirectTo: 'list', pathMatch: 'full' },
+  { <span class="key">path</span>: <span class="string"><span class="delimiter">'</span><span class="content">create</span><span class="delimiter">'</span></span>, <span class="key">component</span>: CreateComponent },
+  { <span class="key">path</span>: <span class="string"><span class="delimiter">'</span><span class="content">edit/:id</span><span class="delimiter">'</span></span>, <span class="key">component</span>: EditComponent },
+  { <span class="key">path</span>: <span class="string"><span class="delimiter">'</span><span class="content">list</span><span class="delimiter">'</span></span>, <span class="key">component</span>: ListComponent },
+  { <span class="key">path</span>: <span class="string"><span class="delimiter">'</span><span class="content">**</span><span class="delimiter">'</span></span>, <span class="key">redirectTo</span>: <span class="string"><span class="delimiter">'</span><span class="content">list</span><span class="delimiter">'</span></span>, <span class="key">pathMatch</span>: <span class="string"><span class="delimiter">'</span><span class="content">full</span><span class="delimiter">'</span></span> },
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+<span class="error">@</span>NgModule({
+  <span class="key">imports</span>: [RouterModule.forRoot(routes)],
+  <span class="key">exports</span>: [RouterModule]
 })
-export class AppRoutingModule { }</code></pre>
+<span class="reserved">export</span> <span class="reserved">class</span> AppRoutingModule { }</code></pre>
 </div>
 </div>
 </div>
@@ -740,7 +740,7 @@ We will be using <code>Dockerfile.frontend-build</code> file instead.
 <div class="listingblock">
 <div class="title">prepare frontend Dockerfile (<code>Dockerfile.frontend</code> file):</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="Dockerfile">FROM nginx:1.15.0-alpine
+<pre class="CodeRay highlight"><code data-lang="bash">FROM nginx:1.15.0-alpine
 LABEL MAINTAINER=&quot;Maksim Kostromin https://github.com/daggerok&quot;
 ARG PORT_ARG=&quot;80&quot;
 ARG HOST_ARG=&quot;localhost&quot;
@@ -765,24 +765,24 @@ COPY ./frontend/dist/frontend /usr/share/nginx/html</code></pre>
 <div class="listingblock">
 <div class="title">prepare nginx config template (<code>docke/default.conf.tpl</code> file) to be used by Dockerfil during image build:</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="nginx">server {
-  listen      ${PORT};
-  server_name ${HOST};
-  charset     utf-8;
+<pre class="CodeRay highlight"><code data-lang="lua">server <span class="map"><span class="delimiter">{</span>
+  listen      <span class="error">$</span><span class="map"><span class="inline-delimiter">{</span>PORT<span class="inline-delimiter">}</span></span>;
+  server_name <span class="error">$</span><span class="map"><span class="inline-delimiter">{</span>HOST<span class="inline-delimiter">}</span></span>;
+  charset     utf<span class="integer">-8</span>;
 
-  location / {
+  location / <span class="map"><span class="inline-delimiter">{</span>
     root  /usr/share/nginx/html;
     index index.html index.htm;
     allow all;
-  }
+  <span class="inline-delimiter">}</span></span>
 
-  # redirect some server error pages to the fallback page /index.html
-  error_page 400 404 500 502 503 504 /index.html;
-  location = /index.html {
+  # redirect some server <span class="predefined">error</span> pages to the fallback page /index.html
+  error_page <span class="integer">400</span> <span class="integer">404</span> <span class="integer">500</span> <span class="integer">502</span> <span class="integer">503</span> <span class="integer">504</span> /index.html;
+  <span class="key">location</span> = /index.html <span class="map"><span class="inline-delimiter">{</span>
     root  /usr/share/nginx/html;
     allow all;
-  }
-}</code></pre>
+  <span class="inline-delimiter">}</span></span>
+<span class="delimiter">}</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -855,7 +855,7 @@ Here we will be using <code>Dockerfile.frontend-build</code> file instead.
 <div class="listingblock">
 <div class="title">prepare frontend-build Dockerfile (<code>Dockerfile.frontend-build</code> file):</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="docker">FROM node:8.11-alpine
+<pre class="CodeRay highlight"><code data-lang="bash">FROM node:8.11-alpine
 LABEL MAINTAINER=&quot;Maksim Kostromin https://github.com/daggerok&quot;
 WORKDIR /root/mean-stack/frontend
 COPY ./frontend .
@@ -894,8 +894,8 @@ open http://0.0.0.0/
 docker stop run-mean-stack-frontend-build</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="same-but-build-in-heroku"><a class="anchor" href="#same-but-build-in-heroku"></a>5.1. same, but build in heroku</h4>
+<div class="sect2">
+<h3 id="same-but-build-in-heroku"><a class="anchor" href="#same-but-build-in-heroku"></a>5.1. same, but build in heroku</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="bash">cp -Rf ./.gitignore.local ./.gitignore
@@ -918,13 +918,16 @@ git push heroku master</code></pre>
 <div class="paragraph">
 <p><a href="https://github.com/daggerok/mean-stack">GitHub</a></p>
 </div>
+<div class="paragraph">
+<p><a href="https://asciidoctor.org/docs/user-manual/#source-code-blocks">asciidoctor reference&#8230;&#8203;</a></p>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2018-06-17 01:08:07 UTC
+Last updated 2018-06-17 01:31:05 UTC
 </div>
 </div>
 </body>
