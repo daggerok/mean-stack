@@ -181,6 +181,21 @@ open http://0.0.0.0/
 docker stop run-mean-stack-frontend-build
 ----
 
+==== same, but build with heroku
+
+[source,bash]
+----
+heroku create daggerok-mean-stack-frontend --stack=container
+cp -Rf ./.gitignore.heroku ./.gitignore
+cp -Rf ./heroku.yml.frontend-build ./heroku.yml
+cp -Rf ./.dockerignore.frontend-build ./.dockerignore
+git add .
+git commit -am "Deploy heroku app."
+git push heroku master
+----
+//cp -Rf ./heroku.yml.frontend-build ./heroku.yml
+//cp -Rf ./.dockerignore.frontend-build ./.dockerignore
+
 == Links
 
 ifdef::backend-html5[link:./index.pdf[Documentation in PFD format]]

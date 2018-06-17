@@ -1,13 +1,6 @@
 .idea
-frontend/e2e
+frontend/dist
 frontend/node_modules
-frontend/src
-frontend/angular.json
-frontend/package.json
-frontend/package-lock.json
-frontend/README.md
-frontend/tsconfig.json
-frontend/tslint.json
 docs
 gradle
 public
