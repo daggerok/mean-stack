@@ -21,7 +21,6 @@ RUN apk add --update --no-cache libintl curl \
  && chmod +x /usr/local/bin/entrypoint.sh
 ENTRYPOINT entrypoint.sh
 CMD /bin/bash
-#CMD entrypoint.sh
 COPY ./docker/default.conf.tpl /root/default.conf.tpl
 COPY ./frontend/dist/frontend /usr/share/nginx/html
 #end::content[]
