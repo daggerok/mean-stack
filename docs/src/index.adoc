@@ -104,14 +104,14 @@ NOTE: We will be using `Dockerfile.frontend-build` file instead.
 //      We wanna simply delegate everything to `git push heroku master` instruction
 
 .prepare frontend Dockerfile (`Dockerfile.frontend` file):
-[source,bash]
+[source,Dockerfile]
 ----
 include::../../Dockerfile.frontend[tags=content]
 ----
 //include::../../Dockerfile.frontend-build[tags=content]
 
 .prepare nginx config template (`docke/default.conf.tpl` file) to be used by Dockerfil during image build:
-[source,bash]
+[source,nginx]
 ----
 include::../../docker/default.conf.tpl[]
 ----
@@ -119,7 +119,7 @@ include::../../docker/default.conf.tpl[]
 ==== prepare heroku config
 
 .prepare `heroku.yml` file:
-[source,bash]
+[source,yaml]
 ----
 include::../../heroku.yml[]
 ----
@@ -167,7 +167,7 @@ NOTE: Here we will be using `Dockerfile.frontend-build` file instead.
       We wanna simply delegate everything to `git push heroku master` instruction
 
 .prepare frontend-build Dockerfile (`Dockerfile.frontend-build` file):
-[source,bash]
+[source,docker]
 ----
 include::../../Dockerfile.frontend-build[tags=content]
 ----
